@@ -44,9 +44,11 @@ export default function ProductForm({ onSubmit, onCancel, initialData }: Product
     }));
   };
 
+  const inputClassName = "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-black";
+
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-      <h2 className="text-xl font-bold mb-4">{initialData ? '编辑商品' : '添加商品'}</h2>
+      <h2 className="text-xl font-bold mb-4 text-black">{initialData ? '编辑商品' : '添加商品'}</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-gray-700">商品名称</label>
@@ -56,7 +58,7 @@ export default function ProductForm({ onSubmit, onCancel, initialData }: Product
             value={formData.name}
             onChange={handleChange}
             required
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className={inputClassName}
           />
         </div>
 
@@ -68,7 +70,7 @@ export default function ProductForm({ onSubmit, onCancel, initialData }: Product
             value={formData.code}
             onChange={handleChange}
             required
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className={inputClassName}
           />
         </div>
 
@@ -80,7 +82,7 @@ export default function ProductForm({ onSubmit, onCancel, initialData }: Product
             value={formData.category}
             onChange={handleChange}
             required
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className={inputClassName}
           />
         </div>
 
@@ -94,7 +96,7 @@ export default function ProductForm({ onSubmit, onCancel, initialData }: Product
             required
             min="0"
             step="0.01"
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className={inputClassName}
           />
         </div>
 
@@ -107,7 +109,7 @@ export default function ProductForm({ onSubmit, onCancel, initialData }: Product
             onChange={handleChange}
             required
             min="0"
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className={inputClassName}
           />
         </div>
 

@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// 用户
+model User {
+  id        String   @id @default(uuid()) // 用户ID
+  email     String   @unique // 邮箱
+  password  String // 密码
+  name      String // 用户名
+  role      String   @default("user") // 角色
+  createdAt DateTime @default(now()) // 创建时间
+  updatedAt DateTime @updatedAt // 更新时间
+}
+
+// 商品
+model Product {
+  id        String   @id @default(uuid()) // 商品ID
+  name      String // 商品名称
+  sku       String   @unique // 商品编号
+  category  String // 商品分类
+  price     Float // 商品价格
+  stock     Int // 商品库存
+  createdAt DateTime @default(now()) // 创建时间
+  updatedAt DateTime @updatedAt
+}
