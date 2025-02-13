@@ -2,20 +2,281 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #000000;
-}
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #000000;
-    --foreground: #ffffff;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+    --chart-1: 217 91% 60%;    /* 明亮的主蓝色 */
+    --chart-2: 199 89% 75%;    /* 清爽的浅蓝色 */
+    --chart-3: 213 94% 68%;    /* 中等蓝色 */
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 221.2 83.2% 53.3%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+    color-scheme: light;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.5%;     /* 调亮一点的背景色 */
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 5.5%;           /* 调亮的卡片背景 */
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 5%;          /* 更暗的弹出层背景 */
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 12%;   /* 更暗的次要背景 */
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 12%;       /* 更暗的静音背景 */
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 12%;      /* 更暗的强调背景 */
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 12%;      /* 更暗的边框颜色 */
+    --input: 217.2 32.6% 12%;       /* 更暗的输入框背景 */
+    --ring: 224.3 76.3% 48%;
+
+    /* 更新图表颜色以适应暗色主题 */
+    --chart-1: 214 95% 70%;    /* 亮蓝色 */
+    --chart-2: 213 90% 85%;    /* 浅亮蓝 */
+    --chart-3: 199 95% 74%;    /* 青蓝色 */
+    --chart-4: 280 65% 55%;
+    --chart-5: 340 75% 50%;
+
+    /* 更新侧边栏暗色主题 */
+    --sidebar-background: 222.2 84% 2%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 217.2 91.2% 59.8%;
+    --sidebar-primary-foreground: 222.2 47.4% 11.2%;
+    --sidebar-accent: 217.2 32.6% 12%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217.2 32.6% 12%;
+    --sidebar-ring: 224.3 76.3% 48%;
+    --card-border: 217.2 32.6% 17.5%;
+    --glow-shadow: 59 130 246;  /* 添加发光阴影颜色变量 */
+    
+    color-scheme: dark;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+
+@layer components {
+  .aurora-blob {
+    @apply absolute opacity-50 mix-blend-hard-light;
+    animation: aurora 10s ease-in-out infinite;
+    filter: blur(80px);
+  }
+
+  .aurora-blob-1 {
+    @apply bg-[#00FFE0] w-[500px] h-[500px] -left-32 -top-32;
+    animation-delay: 0s;
+  }
+
+  .aurora-blob-2 {
+    @apply bg-[#143d8f] w-[700px] h-[700px] -right-32 -top-32;
+    animation-delay: 1s;
+  }
+
+  .aurora-blob-3 {
+    @apply bg-[#00FFE0] w-[600px] h-[600px] -bottom-32 -right-32;
+    animation-delay: 2s;
+  }
+
+  .aurora-blob-4 {
+    @apply bg-[#143d8f] w-[400px] h-[400px] -bottom-32 -left-32;
+    animation-delay: 3s;
+  }
+
+  /* 添加在 components 层中 */
+  .hover-card-effect {
+    @apply transition-all duration-300;
+    @apply hover:-translate-y-1 hover:shadow-lg;
+    @apply hover:shadow-primary/5 hover:border-primary/30;
+    @apply dark:hover:shadow-primary/10;
+    @apply dark:hover:border-primary/20;
+    @apply relative;
+  }
+
+  .hover-card-effect::after {
+    content: '';
+    @apply absolute inset-0 rounded-lg opacity-0 transition-opacity duration-300;
+    @apply bg-gradient-to-br from-primary/5 to-transparent;
+    @apply dark:from-primary/10 dark:to-transparent;
+    @apply hover:opacity-100;
+  }
+
+  .glow-effect {
+    @apply dark:shadow-[0_0_10px_rgba(59,130,246,0.05)];
+    @apply dark:border-gray-800/40;
+    @apply dark:ring-1 dark:ring-gray-800/40;
+  }
+
+  .glass-effect {
+    @apply bg-white/80 dark:bg-gray-900/80 backdrop-blur-md backdrop-saturate-150;
+    @apply border border-white/20 dark:border-gray-800/20;
+    @apply dark:glow-effect;
+  }
+
+  .nav-glass {
+    @apply glass-effect;
+    @apply shadow-md shadow-black/5 dark:shadow-black/10;
+    @apply z-10;
+  }
+
+  .data-card {
+    @apply hover-card-effect;
+    @apply bg-white/90 dark:bg-gray-900/90;
+    @apply backdrop-blur-lg backdrop-saturate-150;
+  }
+
+  .interactive-icon {
+    @apply transition-transform duration-200;
+    @apply hover:scale-110 active:scale-95;
+  }
+
+  .stat-value {
+    @apply bg-gradient-to-r from-primary to-blue-500;
+    @apply dark:from-primary dark:to-blue-400;
+    @apply bg-clip-text text-transparent;
+    @apply font-bold tracking-tight;
+  }
+}
+
+@keyframes aurora {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.2);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.8);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@layer base {
+  :root {
+    --background-start: #1A1A1A;
+    --background-end: #03050c;
+    --text-color: #CCCCCC;
+  }
+
+  body {
+    background: linear-gradient(45deg, var(--background-start), var(--background-end));
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    color: var(--text-color);
+    font-family: 'Fira Code', 'Roboto Mono', monospace;
+  }
+
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Particle effect */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAECAIAAACQD1PeAAAAHklEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==') 0 0 / 20px 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    @apply transition-colors duration-100;
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+
+  .no-transition {
+    transition: none !important;
+  }
+
+  .data-card {
+    @apply hover-card-effect;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background-image: none;
+    transition: background-color 200ms ease-in-out;
+  }
+
+  body.dark {
+    background: linear-gradient(45deg, hsl(222.2 84% 4.5%), hsl(225 84% 5.5%));
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+
+  /* 调整暗色模式下的粒子效果透明度 */
+  body.dark::before {
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+
+  /* 隐藏默认滚动条 */
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  *::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* 移除重复的滚动条样式，改用工具类 */
+  [data-radix-scroll-area-viewport] {
+    @apply scrollbar-none;
+  }
+}
+
+@layer utilities {
+  /* 添加自定义工具类 */
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
 }

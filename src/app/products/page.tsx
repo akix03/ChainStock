@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Product } from '@/types/product';
 import ProductTable from '@/components/ProductTable';
 import ProductForm from '@/components/ProductForm';
@@ -13,21 +13,71 @@ export default function ProductsPage() {
   // 编辑的商品
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
 
+  useEffect(() => {
+    // 获取产品列表
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('/api/products');
+        const data = await response.json();
+        if (Array.isArray(data)) {
+          setProducts(data);
+        } else {
+          console.error('Expected an array but got:', data);
+        }
+      } catch (error) {
+        console.error('Failed to fetch products:', error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   // 添加商品
-  const handleAddProduct = (product: Product) => {
-    setProducts([...products, { ...product, id: Date.now().toString() }]);
-    setIsFormOpen(false);
+  const handleAddProduct = async (product: Product) => {
+    try {
+      const response = await fetch('/api/products', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(product),
+      });
+      const newProduct = await response.json();
+      setProducts([...products, newProduct]);
+      setIsFormOpen(false);
+    } catch (error) {
+      console.error('Failed to add product:', error);
+    }
   };
 
   // 编辑商品
-  const handleEditProduct = (product: Product) => {
-    setProducts(products.map(p => p.id === product.id ? product : p));
-    setEditingProduct(null);
+  const handleEditProduct = async (product: Product) => {
+    try {
+      const response = await fetch(`/api/products/${product.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(product),
+      });
+      const updatedProduct = await response.json();
+      setProducts(products.map(p => p.id === updatedProduct.id ? updatedProduct : p));
+      setEditingProduct(null);
+    } catch (error) {
+      console.error('Failed to edit product:', error);
+    }
   };
 
   // 删除商品
-  const handleDeleteProduct = (id: string) => {
-    setProducts(products.filter(p => p.id !== id));
+  const handleDeleteProduct = async (id: string) => {
+    try {
+      await fetch(`/api/products/${id}`, {
+        method: 'DELETE',
+      });
+      setProducts(products.filter(p => p.id !== id));
+    } catch (error) {
+      console.error('Failed to delete product:', error);
+    }
   };
 
   // 返回商品管理页面
