@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Orbitron, Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from '@/contexts/theme-provider'
+import { ThemeProvider } from "next-themes";
 
 const orbitron = Orbitron({ subsets: ["latin"] });
 const inter = Inter({ subsets: ["latin"] });
@@ -21,22 +21,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh" suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                // 立即应用保存的主题，避免闪烁
-                const theme = localStorage.getItem('theme') || 'system';
-                const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-                document.documentElement.classList.add(theme === 'system' ? systemTheme : theme);
-              } catch (e) {}
-            `,
-          }}
-        />
-      </head>
       <body className={`${orbitron.className} ${inter.className}`}>
-        <ThemeProvider defaultTheme="system">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           {children}
         </ThemeProvider>
       </body>

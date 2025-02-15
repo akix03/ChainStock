@@ -33,7 +33,7 @@ const chartConfig = {
 export function BarChartMultiple() {
   return (
     <div className="w-full h-full">
-      <ChartContainer config={chartConfig}>
+      <ChartContainer config={chartConfig} className="w-full h-full">
         <BarChart 
           data={chartData}
           margin={{ top: 5, right: 5, bottom: 5, left: -10 }}

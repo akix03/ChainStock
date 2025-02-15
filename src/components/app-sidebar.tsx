@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import { GalleryVerticalEnd } from "lucide-react"
 
 import { NavUser } from "@/components/nav-user"
-import { ThemeToggle } from '@/components/theme-toggle'
+import { ThemeToggle } from "@/components/theme-toggle"
 
 import {
   Sidebar,
@@ -191,11 +191,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={user} />
+        <ThemeToggle />
       </SidebarFooter>
       <SidebarRail />
-      <div className="flex items-center justify-between px-4 mt-auto">
-        <ThemeToggle />
-      </div>
     </Sidebar>
   )
 }
