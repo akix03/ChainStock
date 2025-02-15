@@ -59,7 +59,7 @@ const recentProducts = [
 
 export function MainContent() {
   return (
-    <div className="grid gap-2 lg:grid-cols-7">
+    <div className="grid gap-4 lg:grid-cols-7">
       <Card className="col-span-full lg:col-span-4 data-card glass-effect glow-effect h-[320px]">
         <CardHeader className="flex flex-row items-center justify-between pb-1">
           <div className="flex items-center space-x-2">

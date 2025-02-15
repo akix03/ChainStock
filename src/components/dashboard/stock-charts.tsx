@@ -52,7 +52,7 @@ export function Charts() {
   }
 
   return (
-    <div className="grid gap-2 md:grid-cols-2">
+    <div className="grid gap-4 md:grid-cols-2">
       {/* 商品库存趋势图 */}
       <Card className="col-span-1 h-[300px] data-card glass-effect glow-effect">
         <div className="relative z-10 flex flex-col h-full">
