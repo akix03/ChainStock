@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { BackgroundBeams } from "@/components/background-beams";
+import { WavyBackground } from "@/components/ui/wavy-background";
 
 export default function Home() {
   const router = useRouter();
@@ -15,72 +15,79 @@ export default function Home() {
     }
   }, []);
 
+  const handleNavigation = (path: string) => {
+    // 添加淡出效果
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.3s ease';
+    
+    setTimeout(() => {
+      router.push(path);
+      // 重置opacity
+      document.body.style.opacity = '1';
+    }, 300);
+  };
+
   return (
-    <div className="relative min-h-screen overflow-hidden font-light bg-[#121212] text-white">
-      <div className="relative z-10 flex items-center justify-center min-h-screen ">
-          <div className="w-full max-w-4xl px-6 py-12 mx-auto">
-            <div className="backdrop-blur-sm bg-[#121212]/30 rounded-3xl shadow-2xl shadow-[#00000050] p-12 border border-white/10">
-              <div className="text-center space-y-10">
-                <div className="space-y-4">
-                  <div className="flex justify-center mb-6">
-                    <img
-                      src="/logo-light.svg"
-                      alt="ChainStock Logo"
-                      className="w-16 h-16 animate-float cursor-pointer"
-                      onClick={() => router.push('/')}
-                    />
-                  </div>
-                  <h1 className="text-6xl font-bold tracking-[0.2em] uppercase text-[#E0E0E0]">
-                    Chain<span className="text-[#2D5BFF] font-black">Stock</span>
-                  </h1>
-                  <h2 className="text-2xl font-medium tracking-[0.3em] uppercase text-[#BDBDBD]">
-                    链存优管 — 库存管理系统
-                  </h2>
-                </div>
-                
-                <p className="text-lg text-white/80 max-w-2xl mx-auto font-normal tracking-wider leading-relaxed text-[#8A8A8A]">
-                  高效、智能的库存管理解决方案，助力企业实现数字化转型
-                </p>
-                
-                {!isLoggedIn ? (
-                  <div className="space-x-8 pt-4">
-                    <button
-                      onClick={() => router.push('/login')}
-                      className="bg-[#1A1A1A]/30 hover:bg-[#1A1A1A]/40 text-white font-semibold py-4 px-10 rounded-full backdrop-blur-md transition-all duration-300 hover:shadow-lg shadow-[#00000050] border border-white/10 hover:border-[#2D5BFF]/30"
-                    >
-                      登录系统
-                    </button>
-                    <button
-                      onClick={() => router.push('/register')}
-                      className="bg-[#2D5BFF]/10 hover:bg-[#2D5BFF]/20 text-white font-semibold py-4 px-10 rounded-full transition-all duration-300 hover:shadow-lg shadow-[#00000050] border border-[#2D5BFF]/30 hover:border-[#2D5BFF]/50"
-                    >
-                      注册账号
-                    </button>
-                  </div>
-                ) : (
-                  <div className="space-y-6 pt-4">
-                    <button
-                      onClick={() => router.push('/dashboard')}
-                      className="bg-[#2D5BFF]/10 hover:bg-[#2D5BFF]/20 text-white font-semibold py-4 px-10 rounded-full transition-all duration-300 hover:shadow-lg shadow-[#00000050] border border-[#2D5BFF]/30 hover:border-[#2D5BFF]/50 w-full max-w-xs mx-auto"
-                    >
-                      进入系统
-                    </button>
-                    <button
-                      onClick={() => {
-                        localStorage.removeItem('token');
-                        setIsLoggedIn(false);
-                      }}
-                      className="bg-[#1A1A1A]/30 hover:bg-[#1A1A1A]/40 text-white/80 font-semibold py-3 px-8 rounded-full transition-all duration-300 hover:shadow-lg shadow-[#00000050] border border-white/10 w-full max-w-xs mx-auto"
-                    >
-                      退出登录
-                    </button>
-                  </div>
-                )}
-              </div>
+    <WavyBackground>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center space-y-12">
+          <div className="space-y-6">
+            <div className="flex justify-center mb-8">
+              <img
+                src="/logo-light.svg"
+                alt="ChainStock Logo"
+                className="w-20 h-20 animate-float cursor-pointer [filter:brightness(0)_saturate(100%)_invert(39%)_sepia(64%)_saturate(2619%)_hue-rotate(211deg)_brightness(101%)_contrast(101%)] dark:[filter:brightness(0)_invert(1)]"
+                onClick={() => handleNavigation('/')}
+              />
             </div>
+            <h1 className="text-7xl font-black tracking-wider text-slate-800 dark:text-white">
+              Chain<span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80">Stock</span>
+            </h1>
+            <h2 className="text-3xl font-medium tracking-[0.3em] text-slate-600 dark:text-slate-200">
+              链存优管 — 库存管理系统
+            </h2>
           </div>
+          
+          <p className="text-xl max-w-2xl mx-auto font-normal tracking-wide text-slate-600 dark:text-slate-300">
+            高效、智能的库存管理解决方案，助力企业实现数字化转型
+          </p>
+          
+          {!isLoggedIn ? (
+            <div className="space-x-8 pt-8">
+              <button
+                onClick={() => handleNavigation('/login')}
+                className="w-40 bg-primary/10 hover:bg-primary/20 text-primary font-medium py-3 rounded-full transition-all border border-primary/30 hover:border-primary/50"
+              >
+                登录系统
+              </button>
+              <button
+                onClick={() => handleNavigation('/register')}
+                className="w-40 bg-white/10 dark:bg-black/10 text-slate-800 dark:text-white font-medium py-3 rounded-full transition-all border border-slate-350/20 dark:border-white/10 hover:bg-white/20 dark:hover:bg-black/20"
+              >
+                注册账号
+              </button>
+            </div>
+          ) : (
+            <div className="space-x-8 pt-8">
+              <button
+                onClick={() => handleNavigation('/dashboard')}
+                className="w-40 bg-primary/10 hover:bg-primary/20 text-primary font-medium py-3 rounded-full transition-all border border-primary/30 hover:border-primary/50"
+              >
+                进入系统
+              </button>
+              <button
+                onClick={() => {
+                  localStorage.removeItem('token');
+                  setIsLoggedIn(false);
+                }}
+                className="w-40 bg-white/10 dark:bg-black/10 text-slate-800 dark:text-white font-medium py-3 rounded-full transition-all border border-slate-350/20 dark:border-white/10 hover:bg-white/20 dark:hover:bg-black/20"
+              >
+                退出登录
+              </button>
+            </div>
+          )}
+        </div>
       </div>
-      <BackgroundBeams />
-    </div>
+    </WavyBackground>
   );
 }

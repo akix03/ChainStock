@@ -10,7 +10,7 @@ export function StatsCards() {
     <div className="grid gap-4 md:grid-cols-3">
       {/* 商品数卡片 */}
       <Card className="data-card overflow-hidden relative min-h-[160px] w-full flex-shrink-0 transform-gpu">
-        <div className="absolute right-[10%] top-[70%] -translate-y-1/2 opacity-[0.6] dark:opacity-[0.8] pointer-events-none mix-blend-multiply dark:mix-blend-soft-light">
+        <div className="absolute right-[10%] top-[70%] -translate-y-1/2 opacity-[0.7] dark:opacity-[0.8] pointer-events-none mix-blend-multiply dark:mix-blend-soft-light">
           <Image
             src="/undraw_groceries.svg"
             alt="Groceries illustration"
@@ -41,7 +41,7 @@ export function StatsCards() {
       
       {/* 库存总量卡片 */}
       <Card className="data-card overflow-hidden relative min-h-[160px] w-full flex-shrink-0 transform-gpu will-change-transform">
-        <div className="absolute left-[45%] top-[20%] inset-0 flex items-center justify-center opacity-[0.6] dark:opacity-[0.8] pointer-events-none mix-blend-multiply dark:mix-blend-soft-light">
+        <div className="absolute left-[45%] top-[20%] inset-0 flex items-center justify-center opacity-[0.7] dark:opacity-[0.8] pointer-events-none mix-blend-multiply dark:mix-blend-soft-light">
           <div className="w-[192px] h-[192px] relative">
             <Image
               src="/undraw_data-report.svg"
@@ -73,7 +73,7 @@ export function StatsCards() {
 
       {/* 出入库卡片 */}
       <Card className="data-card overflow-hidden relative min-h-[160px] w-full flex-shrink-0 transform-gpu will-change-transform">
-        <div className="absolute left-[35%] top-[15%] inset-0 flex items-center justify-center opacity-[0.6] dark:opacity-[0.8] pointer-events-none mix-blend-multiply dark:mix-blend-soft-light">
+        <div className="absolute left-[35%] top-[15%] inset-0 flex items-center justify-center opacity-[0.7] dark:opacity-[0.8] pointer-events-none mix-blend-multiply dark:mix-blend-soft-light">
           <div className="w-[220px] h-[220px] relative">
             <Image
               src="/undraw_logistics.svg"

@@ -21,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh" suppressHydrationWarning>
-      <body className={`${orbitron.className} ${inter.className}`}>
+      <body className={`min-h-screen bg-slate-950 ${orbitron.className} ${inter.className}`}> {/* 添加全局背景色 */}
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

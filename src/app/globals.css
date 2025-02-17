@@ -258,6 +258,7 @@
     animation: gradient 15s ease infinite;
     color: var(--text-color);
     font-family: 'Fira Code', 'Roboto Mono', monospace;
+    transition: opacity 0.3s ease;
   }
 
   @keyframes gradient {
