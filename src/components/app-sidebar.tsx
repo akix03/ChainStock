@@ -1,11 +1,9 @@
 "use client"
 
 import * as React from "react"
-import { useState, useEffect } from 'react'
-import { GalleryVerticalEnd } from "lucide-react"
-
 import { NavUser } from "@/components/nav-user"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { useUser } from "@/contexts/user-context"
 
 import {
   Sidebar,
@@ -36,12 +34,12 @@ const data = {
       logo: <AiFillProduct />,
       items: [
         {
-          title: "商品信息录入",
-          url: "#",
+          title: "新增商品",
+          url: "/dashboard/products/new",
         },
         {
           title: "商品分类管理",
-          url: "#",
+          url: "/dashboard/products/manage",
         },
       ],
     },
@@ -51,16 +49,16 @@ const data = {
       logo: <SiNginxproxymanager />,
       items: [
         {
-          title: "商品出入库",
-          url: "#",
+          title: "出入库",
+          url: "/dashboard/stocks/in-out",
         },
         {
           title: "库存查询",
-          url: "#",
+          url: "/dashboard/stocks/query",
         },
         {
           title: "库存预警",
-          url: "#",
+          url: "/dashboard/stocks/alert",
         },
       ],
     },
@@ -71,21 +69,21 @@ const data = {
       items: [
         {
           title: "库存报表",
-          url: "#",
+          url: "/dashboard/journaling/stocks",
         },
         {
           title: "出入库记录",
-          url: "#",
+          url: "/dashboard/journaling/in-out",
         },
         {
           title: "决策分析",
-          url: "#",
+          url: "/dashboard/journaling/analysis",
         },
       ],
     },
     {
       title: "系统设置",
-      url: "#",
+      url: "/dashboard/settings",
       logo: <IoIosSettings />,
     },
   ],
@@ -93,37 +91,14 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const [openMenus, setOpenMenus] = React.useState<string[]>(data.navMain.map(item => item.title))
-  const [user, setUser] = useState<{
-    id: string;
-    name: string;
-    email: string;
-    role: string;
-    avatar?: string;
-  } | null>(null);
+  const { user, loading } = useUser()
 
-  useEffect(() => {
-    async function fetchUser() {
-      const token = localStorage.getItem('token');
-      try {
-        const response = await fetch('/api/auth/user', {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        
-        const data = await response.json();
-        setUser(data.user);
-      } catch (error) {
-        console.error('获取用户信息失败:', error);
-      }
-    }
-
-    fetchUser();
-  }, []);
+  if (loading) {
+    return <div className="flex items-center justify-center h-full">加载中...</div>
+  }
 
   if (!user) {
-    return <div>加载中...</div>;
+    return null
   }
 
   const toggleMenu = (title: string) => {
@@ -140,7 +115,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <a href="#">
+              <a href="/dashboard">
                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                   <img src="/logo-light.svg" alt="ChainStock" className="size-4" />
                 </div>

@@ -58,8 +58,8 @@ export function Charts() {
         <div className="relative z-10 flex flex-col h-full">
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
             <div className="flex items-center space-x-3">
-              <div className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/50 transition-colors">
-                <TrendingUp className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+              <div className="p-2 rounded-full bg-zinc-100 dark:bg-zinc-800">
+                <TrendingUp className="w-4 h-4 text-zinc-600 dark:text-zinc-400" />
               </div>
               <div className="space-y-1">
                 <CardTitle className="text-base font-medium text-zinc-900 dark:text-zinc-100">商品库存趋势</CardTitle>
@@ -155,8 +155,8 @@ export function Charts() {
         <div className="relative z-10 flex flex-col h-full">
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
             <div className="flex items-center space-x-3">
-              <div className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/50 transition-colors">
-                <ArrowUpDown className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+              <div className="p-2 rounded-full bg-zinc-100 dark:bg-zinc-800">   
+                <ArrowUpDown className="w-4 h-4 text-zinc-600 dark:text-zinc-400" />
               </div>
               <div className="space-y-1">
                 <CardTitle className="text-base font-medium text-zinc-900 dark:text-zinc-100">出入库记录</CardTitle>
